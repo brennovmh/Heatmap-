@@ -1,0 +1,15 @@
+
+library(ggplot2)
+
+# BP é um dataframe com os seguintes valores: Term, pvalue, Coun e Fold Enrichment 
+
+BP<- ggplot(BP_infec, aes(x= Fold.Enrichment, y=Term, size=Count, color=pvalue_infec)) + geom_point(alpha = 0.7) + 
+  theme_get() + scale_size_area(max_size = 20)
+BP 
+
+# Para ordenar em ordem crescente 
+
+BP<- ggplot(BP_infec, aes(x= Fold.Enrichment, y=reorder(Term, desc(-pvalue_infec)), size=Count, color=pvalue_infec)) + geom_point(alpha = 0.7) + 
+  theme_get() + scale_size_area(max_size = 20)
+BP 
+
