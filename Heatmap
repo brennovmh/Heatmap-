@@ -1,0 +1,96 @@
+
+
+
+infection.total <- read.delim("C:/Users/User/Desktop/HeatMap/Total/1_GO_BP_INFECTION_558entries.txt")
+mock.total <- read.delim("C:/Users/User/Desktop/HeatMap/Total/1_GO_BP_MOCK_669entries.txt")
+
+library(tidyverse)
+library(lubridate)
+
+## Separando coluna nas dataframes
+infection.total.final <- cbind(infection.total$Term, infection.total$PValue, infection.total$Count, infection.total$Fold.Enrichment)
+colnames(infection.total.final) <- c("Term", "pvalue_infec", "Count", "Fold Enrichment")
+as.data.frame(infection.total.final) -> infection.total.final
+infection.total.final %>%
+  filter(pvalue_infec <= 0.05) -> infection.total.final
+View(infection.total.final)
+
+mock.total.final <- cbind(mock.total$Term, mock.total$PValue, mock.total$Count, mock.total$Fold.Enrichment)
+colnames(mock.total.final) <- c("Term", "pvalue_mock", "Count", "Fold Enrichment")
+as.data.frame(mock.total.final) -> mock.total.final
+mock.total.final %>%
+  filter(pvalue_mock <= 0.05) -> mock.total.final
+View(mock.total.final)
+
+
+## Filtrando e juntando dataframes
+merge(infection.total.final, mock.total.final, by = "Term") -> final.total 
+View(final.total)
+
+write.csv(infection.total.final, "C:/Users/User/BP_infec")
+
+## Ajustando dados na coluna Term 
+
+library(stringr)
+
+term <- final.total$Term
+str_remove(term, "[mmu0123456789:]") -> term
+str_remove(term, "G") -> term
+str_to_title(term) -> term
+final.total <- cbind(term, final.total$pvalue_mock, final.total$pvalue_infec)
+colnames(final.total) <- c("Term", "pvalue_mock", "pvalue_infec")
+View(final.total)
+
+## Impedindo inclusões de NAs
+library("gsubfn")
+final.total <- as.data.frame(final.total)
+final.total$pvalue_infec -> pvalue_infec
+final.total$pvalue_mock -> pvalue_mock
+gsub(",",".", pvalue_infec) -> pvalue_infec
+gsub(",",".", pvalue_mock) -> pvalue_mock
+View(final.total)
+
+## Transformando pvalue em numeric 
+as.numeric(pvalue_infec) -> p_infec
+as.numeric(pvalue_mock) -> p_mock
+
+## Gerando Z-Score
+qnorm(p_infec) -> Infection 
+qnorm(p_mock) -> Mock 
+
+
+## Transformando pvalue em log10
+-1*log(p_infec) -> Infection 
+-1*log(p_mock) -> Mock
+
+## Juntando dados novamente 
+data.frame(final.total$Term, Infection, Mock) -> hm_data
+View(hm_data)
+
+## Convertendo coluna em row name 
+# Usando pacote textshape e função column_to_row_names
+library(textshape)
+column_to_rownames(hm_data) -> hm_data
+View(hm_data)
+
+## Plotando gráfico usando CompleHeatMap pacjage
+
+library(ComplexHeatmap)
+library(circlize)
+
+col_fun = colorRamp2(c(-1,-4), c("white", "orange"))
+ht1 = Heatmap(as.matrix(hm_data), show_column_dend = F, show_row_dend = F,
+              heatmap_legend_param = list(title = "Z Score",
+                                          legend_height = unit(3, "cm"),
+                                          title_position = "leftcenter-rot"),
+              row_names_gp = gpar(fontsize=10),
+              width = unit(2, "cm"),
+              height = unit(6, "cm"),
+              row_names_max_width = unit(7, "cm"),
+              column_order = sort(colnames(Infection)),
+              col = col_fun
+)
+
+draw(ht1, heatmap_legend_side = "left")
+
+dev.off()
