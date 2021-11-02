@@ -13,3 +13,13 @@ BP<- ggplot(BP_infec, aes(x= Fold.Enrichment, y=reorder(Term, desc(-pvalue_infec
   theme_get() + scale_size_area(max_size = 20)
 BP 
 
+# Para salvar em pasta selecionada (salva no woeking directory)
+
+
+ggsave(filename = "BP_infec.png",
+       plot = print(BP),
+       device = png,
+       scale = 1,
+       dpi = 300,
+       units = c("cm"))
+dev.off()
