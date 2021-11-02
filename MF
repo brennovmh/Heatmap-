@@ -1,0 +1,41 @@
+Importar dataset com nome "infection.total"
+
+library(stringr)
+library(ggplot2)
+library(dplyr)
+
+
+## Separando coluna nas dataframes
+infection.total.final <- data.frame(infection.total$Term, infection.total$PValue, infection.total$Count, infection.total$Fold.Enrichment)
+colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
+as.data.frame(infection.total.final) -> infection.total.final
+infection.total.final %>%
+  filter(p_value <= 0.05) -> MF_infec
+View(MF_infec)
+
+## Ajustando nome dos termos 
+
+term <- MF_infec$Term
+str_remove_all(term, "~") -> term
+str_remove_all(term, ":") -> term
+str_remove_all(term, "[0123456789]") -> term
+str_remove(term, "GO") -> term
+str_to_title(term) -> term
+View(term)
+MF_infec <- data.frame(term, MF_infec$p_value, MF_infec$Count, MF_infec$`Fold Enrichment`)
+colnames(MF_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(MF_infec)
+
+## Plotar usando ggplot2
+
+MF <- ggplot(MF_infec, aes(x= Fold.Enrichment, y=reorder(Term, desc(-p_value)), size=Count, color=p_value)) + geom_point(alpha = 0.7) + 
+  theme_get() + scale_size_area(max_size = 20) + ylab("Molecular Function") 
+MF 
+
+ggsave(filename = "MF_infec.png",
+       plot = print(MF),
+       device = png,
+       scale = 1,
+       dpi = 300,
+       units = c("cm"))
+dev.off()
