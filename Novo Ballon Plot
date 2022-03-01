@@ -1,0 +1,51 @@
+library(stringr)
+library(ggplot2)
+library(dplyr)
+install.packages("ggpubr", dependencies = TRUE)
+library("ggpubr")
+
+
+infection.total <- read.delim("C:/Users/User/OneDrive/Área de Trabalho/HeatMap/Exclusivas/1.1_GO_BP_INFECTION_95entries.txt")
+
+mock.total <- read.delim("C:/Users/User/OneDrive/Área de Trabalho/HeatMap/Exclusivas/1.1_GO_BP_MOCK_206entries.txt")
+
+## Separando coluna nas dataframes
+infection.total.final <- cbind(infection.total$Term, infection.total$PValue, infection.total$Count, infection.total$Fold.Enrichment)
+colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
+View(infection.total.final)
+
+mock.total.final <- cbind(mock.total$Term, mock.total$PValue, mock.total$Count, mock.total$Fold.Enrichment)
+colnames(mock.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
+View(mock.total.final)
+
+## Making dataframes
+as.data.frame(infection.total.final) -> infection.total.final
+as.data.frame(mock.total.final) -> mock.total.final
+
+## Filtering p<0.05
+infection.total.final %>%
+  filter(p_value <= 0.05) -> infection.total.final
+
+mock.total.final %>%
+  filter(p_value <= 0.05) -> mock.total.final
+
+## Merge dataframes
+merge(infection.total.final, mock.total.final, by = "Term", all = TRUE) -> final.total 
+View(final.total)
+
+## Separand I e M n df
+infection.total.final <- cbind(final.total$Term, final.total$p_value.x, final.total$Count.x, final.total$`Fold Enrichment.x`)
+colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(infection.total.final)
+
+mock.total.final <- cbind(final.total$Term, final.total$p_value.y, final.total$Count.y, final.total$`Fold Enrichment.y`)
+colnames(mock.total.final) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(mock.total.final)
+
+## Making dataframes
+as.data.frame(infection.total.final) -> infection.total.final
+as.data.frame(mock.total.final) -> mock.total.final
+
+## Plot
+ggballoonplot()
+
