@@ -1,0 +1,5 @@
+
+ggplot() +
+  geom_point(data = BP_infec, aes(x = "Infection", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) +
+  geom_point(data = BP_mock, aes(x = "Mock", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab")
+
