@@ -1,5 +1,10 @@
+install.packages("stringr")
+install.packages("ggplot2")
+install.packages("dplyr")
+
 library(stringr)
 library(ggplot2)
+library(dplyr)
 
 ################################################################## BP_infec ################################################################
 ## Separando coluna nas dataframes
