@@ -48,7 +48,7 @@ str_remove_all(term, "[0123456789]") -> term
 str_remove(term, "GO") -> term
 str_to_title(term) -> term
 view(term)
-BP_infec <- data.frame(term, BP_mock$p_value, BP_mock$Count, BP_mock$`Fold Enrichment`)
+BP_mock <- data.frame(term, BP_mock$p_value, BP_mock$Count, BP_mock$`Fold Enrichment`)
 colnames(BP_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(BP_mock)
 
@@ -82,7 +82,7 @@ str_remove_all(term, "[0123456789]") -> term
 str_remove(term, "GO") -> term
 str_to_title(term) -> term
 view(term)
-BP_infec <- data.frame(term, CC_infec$p_value, CC_infec$Count, CC_infec$`Fold Enrichment`)
+CC_infec <- data.frame(term, CC_infec$p_value, CC_infec$Count, CC_infec$`Fold Enrichment`)
 colnames(CC_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(CC_infec)
 
@@ -107,7 +107,7 @@ str_remove_all(term, "[0123456789]") -> term
 str_remove(term, "GO") -> term
 str_to_title(term) -> term
 view(term)
-BP_infec <- data.frame(term, CC_mock$p_value, CC_mock$Count, CC_mock$`Fold Enrichment`)
+CC_mock <- data.frame(term, CC_mock$p_value, CC_mock$Count, CC_mock$`Fold Enrichment`)
 colnames(CC_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(CC_mock)
 
@@ -141,7 +141,7 @@ str_remove_all(term, "[0123456789]") -> term
 str_remove(term, "GO") -> term
 str_to_title(term) -> term
 view(term)
-BP_infec <- data.frame(term, MF_infec$p_value, MF_infec$Count, MF_infec$`Fold Enrichment`)
+MF_infec <- data.frame(term, MF_infec$p_value, MF_infec$Count, MF_infec$`Fold Enrichment`)
 colnames(MF_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(MF_infec)
 
@@ -166,7 +166,7 @@ str_remove_all(term, "[0123456789]") -> term
 str_remove(term, "GO") -> term
 str_to_title(term) -> term
 view(term)
-BP_infec <- data.frame(term, MF_mock$p_value, MF_mock$Count, MF_mock$`Fold Enrichment`)
+MF_mock <- data.frame(term, MF_mock$p_value, MF_mock$Count, MF_mock$`Fold Enrichment`)
 colnames(MF_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(MF_mock)
 
