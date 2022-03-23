@@ -1,0 +1,23 @@
+library(stringr)
+library(ggplot2)
+
+## Separando coluna nas dataframes
+infection.total.final <- data.frame(infection.total$Term, infection.total$PValue, infection.total$Count, infection.total$Fold.Enrichment)
+colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
+as.data.frame(infection.total.final) -> infection.total.final
+infection.total.final %>%
+  filter(p_value <= 0.05) -> BP_infec
+View(BP_infec)
+
+## Ajustando nome dos termos 
+
+term <- BP_infec$Term
+str_remove_all(term, "~") -> term
+str_remove_all(term, ":") -> term
+str_remove_all(term, "[0123456789]") -> term
+str_remove(term, "GO") -> term
+str_to_title(term) -> term
+view(term)
+BP_infec <- data.frame(term, BP_infec$p_value, BP_infec$Count, BP_infec$`Fold Enrichment`)
+colnames(BP_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(BP_infec)
