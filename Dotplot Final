@@ -90,7 +90,7 @@ View(CC_infec)
 
 ## Retirano colunas solicitaas
 CC_infec%>%
-  slice() -> CC_infec
+  slice(7,20,31,13,1,32,10) -> CC_infec
 
 ################################################################## CC_mock ################################################################
 ## Separando coluna nas dataframes
