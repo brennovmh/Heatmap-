@@ -139,7 +139,6 @@ infection.total.final %>%
 View(KEGG_infec)
 
 ## Ajustando nome dos termos 
-
 term <- KEGG_infec$Term
 str_remove_all(term, "~") -> term
 str_remove_all(term, ":") -> term
@@ -162,7 +161,6 @@ infection.total.final %>%
 View(KEGG_mock
 
 ## Ajustando nome dos termos 
-
 term <- KEGG_mock$Term
 str_remove_all(term, "~") -> term
 str_remove_all(term, ":") -> term
