@@ -62,8 +62,8 @@ ggplot() +
   geom_point(data = BP_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
   scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
   labs(x = NULL, y = "Biological Process\n") + theme_bw() +
-  scale_size(range = c(5, 15)) + 
-  theme(axis.title = element_text(size = 15)) -> BP
+  scale_size(range = c(5, 20)) + 
+  theme(axis.title = element_text(size = 16)) -> BP
   
 BP
 
@@ -123,8 +123,8 @@ ggplot() +
   geom_point(data = CC_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
   scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
   labs(x = NULL, y = "Cellular Component \n") + theme_bw() +
-  scale_size(range = c(5, 15)) + 
-  theme(axis.title = element_text(size = 15)) -> CC
+  scale_size(range = c(5, 20)) + 
+  theme(axis.title = element_text(size = 16)) -> CC
   
 CC
 
@@ -184,8 +184,8 @@ ggplot() +
   geom_point(data = MF_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
   scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
   labs(x = NULL, y = "Molecular Function \n") + theme_bw() +
-  scale_size(range = c(5, 15)) + 
-  theme(axis.title = element_text(size = 15)) -> MF
+  scale_size(range = c(5, 20)) + 
+  theme(axis.title = element_text(size = 16)) -> MF
   
 MF
 
@@ -245,7 +245,7 @@ ggplot() +
   geom_point(data = KEGG_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
   scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
   labs(x = NULL, y = "KEGG \n") + theme_bw() +
-  scale_size(range = c(5, 15)) + 
-  theme(axis.title = element_text(size = 15)) -> KEGG
+  scale_size(range = c(5, 20)) + 
+  theme(axis.title = element_text(size = 16)) -> KEGG
   
 KEGG
