@@ -44,6 +44,13 @@ colnames(BP_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(BP_mock)
 
 
+########## CRIANDO GRÁFICOS BP ###########
+ggplot() +
+  geom_point(data = BP_infec, aes(x = "Infection", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) +
+  geom_point(data = BP_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
+  scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
+  labs(x = NULL, y = "Biological Process\n") + theme_bw()
+
 ################################################################### CC_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(CC_infection.total$Term, CC_infection.total$PValue, CC_infection.total$Count, CC_infection.total$Fold.Enrichment)
@@ -86,6 +93,12 @@ BP_infec <- data.frame(term, CC_mock$p_value, CC_mock$Count, CC_mock$`Fold Enric
 colnames(CC_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(CC_mock)
 
+########## CRIANDO GRÁFICOS CC ###########
+ggplot() +
+  geom_point(data = CC_infec, aes(x = "Infection", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) +
+  geom_point(data = CC_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
+  scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
+  labs(x = NULL, y = "Cellular Component \n") + theme_bw()
 
 ################################################################### MF_infec ################################################################
 ## Separando coluna nas dataframes
@@ -129,6 +142,14 @@ BP_infec <- data.frame(term, MF_mock$p_value, MF_mock$Count, MF_mock$`Fold Enric
 colnames(MF_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(MF_mock)
 
+
+########## CRIANDO GRÁFICOS MF ###########
+ggplot() +
+  geom_point(data = MF_infec, aes(x = "Infection", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) +
+  geom_point(data = MF_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
+  scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
+  labs(x = NULL, y = "Molecular Function \n") + theme_bw()
+
 ################################################################## KEEG_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(KEEG_infection.total$Term, KEEG_infection.total$PValue, KEEG_infection.total$Count, KEEG_infection.total$Fold.Enrichment)
@@ -171,3 +192,11 @@ View(term)
 KEGG_infec <- data.frame(term, KEGG_mock$p_value, KEGG_mock$Count, KEGG_mock$`Fold Enrichment`)
 colnames(KEGG_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(KEGG_mock)
+
+
+########## CRIANDO GRÁFICOS KEGG ###########
+ggplot() +
+  geom_point(data = KEGG_infec, aes(x = "Infection", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) +
+  geom_point(data = KEGG_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
+  scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
+  labs(x = NULL, y = "KEGG \n") + theme_bw()
