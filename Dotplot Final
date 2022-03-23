@@ -1,7 +1,7 @@
 library(stringr)
 library(ggplot2)
 
-################## BP_infec ############################
+################################################################## BP_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(BP_infection.total$Term, BP_infection.total$PValue, BP_infection.total$Count, BP_infection.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -22,7 +22,7 @@ BP_infec <- data.frame(term, BP_infec$p_value, BP_infec$Count, BP_infec$`Fold En
 colnames(BP_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(BP_infec)
 
-################## BP_mock ############################
+################################################################## BP_mock ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(BP_mock.total$Term, BP_mock.total$PValue, BP_mock.total$Count, BP_mock.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -44,7 +44,7 @@ colnames(BP_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(BP_mock)
 
 
-################## CC_infec ############################
+################################################################### CC_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(CC_infection.total$Term, CC_infection.total$PValue, CC_infection.total$Count, CC_infection.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -65,7 +65,7 @@ BP_infec <- data.frame(term, CC_infec$p_value, CC_infec$Count, CC_infec$`Fold En
 colnames(CC_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(CC_infec)
 
-################## CC_mock ############################
+################################################################## CC_mock ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(CC_mock.total$Term, CC_mock.total$PValue, CC_mock.total$Count, CC_mock.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -87,7 +87,7 @@ colnames(CC_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(CC_mock)
 
 
-################## MF_infec ############################
+################################################################### MF_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(MF_infection.total$Term, MF_infection.total$PValue, MF_infection.total$Count, MF_infection.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -108,7 +108,7 @@ BP_infec <- data.frame(term, MF_infec$p_value, MF_infec$Count, MF_infec$`Fold En
 colnames(MF_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(MF_infec)
 
-################## MF_mock ############################
+#################################################################### MF_mock ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(MF_mock.total$Term, MF_mock.total$PValue, MF_mock.total$Count, MF_mock.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -129,7 +129,7 @@ BP_infec <- data.frame(term, MF_mock$p_value, MF_mock$Count, MF_mock$`Fold Enric
 colnames(MF_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(MF_mock)
 
-################## KEEG_infec ############################
+################################################################## KEEG_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(KEEG_infection.total$Term, KEEG_infection.total$PValue, KEEG_infection.total$Count, KEEG_infection.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -151,7 +151,7 @@ colnames(KEGG_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(KEGG_infec)
 
 
-################## KEEG_mock ############################
+################################################################## KEGG_mock ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(KEEG_mock.total$Term, KEEG_mock.total$PValue, KEEG_mock.total$Count, KEEG_mock.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
