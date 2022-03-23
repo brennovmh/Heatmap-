@@ -129,4 +129,47 @@ BP_infec <- data.frame(term, MF_mock$p_value, MF_mock$Count, MF_mock$`Fold Enric
 colnames(MF_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(MF_mock)
 
+################## KEEG_infec ############################
+## Separando coluna nas dataframes
+infection.total.final <- data.frame(KEEG_infection.total$Term, KEEG_infection.total$PValue, KEEG_infection.total$Count, KEEG_infection.total$Fold.Enrichment)
+colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
+as.data.frame(infection.total.final) -> infection.total.final
+infection.total.final %>%
+  filter(p_value <= 0.05) -> KEGG_infec
+View(KEGG_infec)
 
+## Ajustando nome dos termos 
+
+term <- KEGG_infec$Term
+str_remove_all(term, "~") -> term
+str_remove_all(term, ":") -> term
+str_remove_all(term, "[0123456789]") -> term
+str_remove(term, "mmu") -> term
+str_to_title(term) -> term
+View(term)
+KEGG_infec <- data.frame(term, KEGG_infec$p_value, KEGG_infec$Count, KEGG_infec$`Fold Enrichment`)
+colnames(KEGG_infec) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(KEGG_infec)
+
+
+################## KEEG_mock ############################
+## Separando coluna nas dataframes
+infection.total.final <- data.frame(KEEG_mock.total$Term, KEEG_mock.total$PValue, KEEG_mock.total$Count, KEEG_mock.total$Fold.Enrichment)
+colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
+as.data.frame(infection.total.final) -> infection.total.final
+infection.total.final %>%
+  filter(p_value <= 0.05) -> KEGG_mock
+View(KEGG_mock
+
+## Ajustando nome dos termos 
+
+term <- KEGG_mock$Term
+str_remove_all(term, "~") -> term
+str_remove_all(term, ":") -> term
+str_remove_all(term, "[0123456789]") -> term
+str_remove(term, "mmu") -> term
+str_to_title(term) -> term
+View(term)
+KEGG_infec <- data.frame(term, KEGG_mock$p_value, KEGG_mock$Count, KEGG_mock$`Fold Enrichment`)
+colnames(KEGG_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(KEGG_mock)
