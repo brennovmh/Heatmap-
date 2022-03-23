@@ -231,7 +231,7 @@ str_remove_all(term, "[0123456789]") -> term
 str_remove(term, "mmu") -> term
 str_to_title(term) -> term
 View(term)
-KEGG_infec <- data.frame(term, KEGG_mock$p_value, KEGG_mock$Count, KEGG_mock$`Fold Enrichment`)
+KEGG_mock <- data.frame(term, KEGG_mock$p_value, KEGG_mock$Count, KEGG_mock$`Fold Enrichment`)
 colnames(KEGG_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
 View(KEGG_mock)
 
