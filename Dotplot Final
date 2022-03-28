@@ -64,7 +64,9 @@ ggplot() +
   scale_x_discrete(limits= c("Infection", "Control")) +
   labs(x = NULL, y = "Biological Process\n") + theme_bw() +
   scale_size(range = c(5, 20)) + 
-  theme(axis.title = element_text(size = 16)) -> BP
+  theme(axis.text = element_text(size = 15)) +
+  theme(axis.title = element_text(size = 18))  -> BP
+
   
 BP
 
@@ -126,7 +128,9 @@ ggplot() +
   scale_x_discrete(limits= c("Infection", "Control")) +
   labs(x = NULL, y = "Cellular Component \n") + theme_bw() +
   scale_size(range = c(5, 20)) + 
-  theme(axis.title = element_text(size = 16)) -> CC
+  theme(axis.text = element_text(size = 15)) +
+  theme(axis.title = element_text(size = 18))  -> CC
+
   
 CC
 
@@ -187,7 +191,9 @@ ggplot() +
   scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
   labs(x = NULL, y = "Molecular Function \n") + theme_bw() +
   scale_size(range = c(5, 20)) + 
-  theme(axis.title = element_text(size = 16)) -> MF
+  theme(axis.text = element_text(size = 15)) +
+  theme(axis.title = element_text(size = 18))  -> MF
+
   
 MF
 
@@ -249,6 +255,8 @@ ggplot() +
   scale_x_discrete(limits= c("Infection", "Control")) +
   labs(x = NULL, y = "KEGG \n") + theme_bw() +
   scale_size(range = c(5, 20)) + 
-  theme(axis.title = element_text(size = 16)) -> KEGG
+  theme(axis.text = element_text(size = 15)) +
+  theme(axis.title = element_text(size = 18))  -> KEGG
+
   
 KEGG
