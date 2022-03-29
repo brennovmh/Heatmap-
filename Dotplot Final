@@ -1,12 +1,14 @@
 install.packages("stringr")
 install.packages("ggplot2")
 install.packages("dplyr")
+install.packages("ggpubr")
 
 library(stringr)
 library(ggplot2)
 library(dplyr)
+library(ggpubr)
 
-################################################################## BP_infec ################################################################
+ ################################################################## BP_infec ################################################################
 ## Separando coluna nas dataframes
 infection.total.final <- data.frame(BP_infection.total$Term, BP_infection.total$PValue, BP_infection.total$Count, BP_infection.total$Fold.Enrichment)
 colnames(infection.total.final) <- c("Term", "p_value", "Count", "Fold Enrichment")
@@ -64,8 +66,8 @@ ggplot() +
   scale_x_discrete(limits= c("Infection", "Control")) +
   labs(x = NULL, y = "Biological Process\n") + theme_bw() +
   scale_size(range = c(8, 20)) + 
-  theme(axis.text = element_text(size = 15)) +
-  theme(axis.title = element_text(size = 18))  -> BP
+  theme(axis.text = element_text(size = 25)) +
+  theme(axis.title = element_text(size = 20))  -> BP
 
 BP
 
@@ -127,8 +129,8 @@ ggplot() +
   scale_x_discrete(limits= c("Infection", "Control")) +
   labs(x = NULL, y = "Cellular Component \n") + theme_bw() +
   scale_size(range = c(5, 20)) + 
-  theme(axis.text = element_text(size = 15)) +
-  theme(axis.title = element_text(size = 18))  -> CC
+  theme(axis.text = element_text(size = 25)) +
+  theme(axis.title = element_text(size = 20))  -> CC
 
 CC
 
@@ -189,8 +191,8 @@ ggplot() +
   scale_color_gradient(low = "red2",  high = "mediumblue", space = "Lab") +
   labs(x = NULL, y = "Molecular Function \n") + theme_bw() +
   scale_size(range = c(5, 20)) + 
-  theme(axis.text = element_text(size = 15)) +
-  theme(axis.title = element_text(size = 18))  -> MF
+  theme(axis.text = element_text(size = 25)) +
+  theme(axis.title = element_text(size = 20))  -> MF
 
 MF
 
@@ -228,23 +230,23 @@ infection.total.final %>%
   filter(p_value <= 0.05) -> KEGG_mock
 View(KEGG_mock
      
-     ## Ajustando nome dos termos 
-     term <- KEGG_mock$Term
-     str_remove_all(term, "~") -> term
-     str_remove_all(term, ":") -> term
-     str_remove_all(term, "[0123456789]") -> term
-     str_remove(term, "mmu") -> term
-     str_to_title(term) -> term
-     View(term)
-     KEGG_mock <- data.frame(term, KEGG_mock$p_value, KEGG_mock$Count, KEGG_mock$`Fold Enrichment`)
-     colnames(KEGG_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
-     View(KEGG_mock)
+## Ajustando nome dos termos 
+term <- KEGG_mock$Term
+str_remove_all(term, "~") -> term
+str_remove_all(term, ":") -> term
+str_remove_all(term, "[0123456789]") -> term
+str_remove(term, "mmu") -> term
+str_to_title(term) -> term
+View(term)
+KEGG_mock <- data.frame(term, KEGG_mock$p_value, KEGG_mock$Count, KEGG_mock$`Fold Enrichment`)
+colnames(KEGG_mock) <- c("Term", "p_value", "Count", "Fold.Enrichment")
+View(KEGG_mock)
      
-     ## Retirano colunas solicitaas
-     KEGG_mock%>%
-       slice(1,4,10,16) -> KEGG_mock
+## Retirano colunas solicitaas
+KEGG_mock%>%
+  slice(1,4,10,16) -> KEGG_mock
      
-     ########## CRIANDO GRÁFICOS KEGG ###########
+########## CRIANDO GRÁFICOS KEGG ###########
      ggplot() +
        geom_point(data = KEGG_infec, aes(x = "Infection", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) +
        geom_point(data = KEGG_mock, aes(x = "Control", y = reorder(Term, desc(-p_value)), size=Count, color=p_value)) + 
@@ -252,7 +254,8 @@ View(KEGG_mock
        scale_x_discrete(limits= c("Infection", "Control")) +
        labs(x = NULL, y = "KEGG \n") + theme_bw() +
        scale_size(range = c(5, 20)) + 
-       theme(axis.text = element_text(size = 15)) +
-       theme(axis.title = element_text(size = 18))  -> KEGG
+       theme(axis.text = element_text(size = 25)) +
+       theme(axis.title = element_text(size = 20))  -> KEGG
      
      KEGG
+    
