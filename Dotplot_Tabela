@@ -1,0 +1,12 @@
+dotplot <- ggplot(rawdata, aes(x = FC, y = Description, size = abs(FC), color = factor(sign(FC)))) +
+  geom_point() +
+  scale_color_manual(values = c("red", "green", 'white', 'purple', 'cyan', 'blue')) +
+  geom_point(data = rawdata, aes(x = Cond_FC, y = Description, size = 2, color = Condition)) +
+  geom_vline(xintercept = 7.5, linetype = "solid", color = "grey", size = 0.55) +  # Adiciona linha vertical em x = 6
+  theme_light() + 
+  guides(size = FALSE) +  # Remove a escala de tamanho
+  labs(x = "Fold change") +
+  theme(legend.position = "right",  # Posiciona as legendas na parte inferior
+        legend.box = "horizontal",
+        axis.title.y = element_blank(), aspect.ratio = 1.7) # Remove o rótulo do eixo y
+
